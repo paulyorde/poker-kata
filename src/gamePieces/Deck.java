@@ -22,7 +22,7 @@ public class Deck {
 		}
 	}
 
-	public List<Card> getCards() {
+	public List<Card> cards() {
 		return cards;
 	}
 

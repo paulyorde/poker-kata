@@ -9,6 +9,16 @@ public class GameRules  {
 		return HighestCard.determineFor(p1, p2, iIn);
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		Player white = new Player("white");
 		Player black = new Player("black");

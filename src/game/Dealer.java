@@ -14,13 +14,13 @@ public class Dealer {
 
 	public static void dealTo(Player player) {
 		shuffleCards();
-		DECK.getCards().stream()
+		DECK.cards().stream()
 			.limit(5)
 			.forEach(card -> player.addCardToHand(card));
 	}
 	
 	private static void shuffleCards() {
-		Collections.shuffle(DECK.getCards());
+		Collections.shuffle(DECK.cards());
 	}
 	
 }
