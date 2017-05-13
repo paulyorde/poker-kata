@@ -1,6 +1,9 @@
-package poker;
+package game;
 
 import java.util.Collections;
+
+import gamePieces.Deck;
+import player.Player;
 
 public class Dealer {
 	private static final Deck DECK = new Deck();
@@ -11,13 +14,13 @@ public class Dealer {
 
 	public static void dealTo(Player player) {
 		shuffleCards();
-		DECK.cards.stream()
+		DECK.getCards().stream()
 			.limit(5)
 			.forEach(card -> player.addCardToHand(card));
 	}
 	
 	private static void shuffleCards() {
-		Collections.shuffle(DECK.cards);
+		Collections.shuffle(DECK.getCards());
 	}
 	
 }

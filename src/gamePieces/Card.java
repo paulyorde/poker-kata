@@ -1,4 +1,4 @@
-package poker;
+package gamePieces;
 
 public class Card implements Comparable<Card> {
 	private String suit;

@@ -1,4 +1,6 @@
-package poker;
+package game;
+
+import player.Player;
 
 public class Game {
 	

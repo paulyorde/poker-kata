@@ -1,7 +1,9 @@
-package poker;
+package player;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import gamePieces.Card;
 
 public class Hand {
 	private List<Card> cards = new ArrayList<>();

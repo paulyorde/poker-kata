@@ -1,29 +1,26 @@
 package logic;
 
-import poker.Player;
+import player.Player;
 
 public class HighestCard {
 
 	public HighestCard() {}
 
 	public static int determineFor(Player p1, Player p2, int iIn) {
-		int playerOneHighestCard = 0;
-		int playerTwoHighestCard = 0;
-		boolean playerOneCardIsHighest = playerOneHighestCard > playerTwoHighestCard;
-		boolean playerTwoCardIsHighest = playerOneHighestCard < playerTwoHighestCard;
 		int noWinner = 0;
 		
 		for (int i = iIn; i < 4; i++) {
-			playerOneHighestCard = p1.getHand().getCards().get(i).getValue();
-			playerTwoHighestCard = p2.getHand().getCards().get(i).getValue();
+			int playerOneHighestCard = p1.getHand().getCards().get(i).getValue();
+			int playerTwoHighestCard = p2.getHand().getCards().get(i).getValue();
+			boolean playerOneCardIsHighest = playerOneHighestCard > playerTwoHighestCard;
+			boolean playerTwoCardIsHighest = playerOneHighestCard < playerTwoHighestCard;
 
 			if (playerOneCardIsHighest) {
 				return playerOneHighestCard;
 			} else if (playerTwoCardIsHighest) {
 				return playerTwoHighestCard;
 			} else {
-				// recursively look for highest card
-				determineFor(p1, p2, iIn + 1);
+				determineFor(p1, p2, iIn + 1); // recursively look for highest card
 			}
 		}
 		return noWinner;

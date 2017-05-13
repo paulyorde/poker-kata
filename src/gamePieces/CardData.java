@@ -1,4 +1,4 @@
-package poker;
+package gamePieces;
 
 import java.util.Arrays;
 import java.util.List;

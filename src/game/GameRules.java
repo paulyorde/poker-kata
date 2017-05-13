@@ -1,6 +1,7 @@
-package poker;
+package game;
 
 import logic.HighestCard;
+import player.Player;
 
 public class GameRules  {
 	// return player or null to access players data

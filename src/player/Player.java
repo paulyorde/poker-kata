@@ -1,6 +1,8 @@
-package poker;
+package player;
 
 import java.util.Collections;
+
+import gamePieces.Card;
 
 public class Player {
 	private String name;

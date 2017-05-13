@@ -1,10 +1,10 @@
-package poker;
+package gamePieces;
 
 import java.util.ArrayList; 
 import java.util.List;
 
 public class Deck {
-	List<Card> cards = new ArrayList<>();
+	private List<Card> cards = new ArrayList<>();
 
 	public Deck() {
 		buildDeck();
@@ -21,4 +21,10 @@ public class Deck {
 			}
 		}
 	}
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	
 }
