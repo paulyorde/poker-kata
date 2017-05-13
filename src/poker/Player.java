@@ -1,5 +1,7 @@
 package poker;
 
+import java.util.Collections;
+
 public class Player {
 	private String name;
 	private Hand hand = new Hand();
@@ -13,12 +15,11 @@ public class Player {
 	}
 
 	public Hand getHand() {
+		Collections.sort(hand.getCards());
 		return hand;
 	}
 
 	public void addCardToHand(Card card) {
-		this.hand.addCard(card);
+		hand.addCard(card);
 	}
-	
-	
 }

@@ -15,7 +15,8 @@ public class Hand {
 	public List<Card> getCards() {
 		return cards;
 	}
-
+	
+	@Override
 	public String toString() {
 		return String.format("%s", cards);
 	}

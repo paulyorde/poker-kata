@@ -1,16 +1,14 @@
 package poker;
 
-import java.util.Comparator;
-
 public class Card implements Comparable<Card> {
 	private String suit;
 	private String face;
-	private int value;
+	private int    value;
 	private String alias;
 
 	public Card(String suit, String face, int value, String alias) {
-		this.suit = suit;
-		this.face = face;
+		this.suit  = suit;
+		this.face  = face;
 		this.value = value;
 		this.alias = alias;
 	}
@@ -39,6 +37,6 @@ public class Card implements Comparable<Card> {
 	@Override
 	public int compareTo(Card comparisonCard) {
 		int comparisonValue = comparisonCard.getValue();
-		return this.value - comparisonValue;
+		return  comparisonValue - this.value;
 	}
 }

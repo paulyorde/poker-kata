@@ -1,22 +1,18 @@
 package poker;
 
-import java.util.ArrayList;
-import java.util.List;
+import logic.HighestCard;
 
-public class GameRules {
-	// return array of alias, player name, etc for display output
-	public static Player compareHands(Player p1, Player p2) {
-		highestCard(p1,p2);
-		return null;
+public class GameRules  {
+	// return player or null to access players data
+	public static int foo(Player p1, Player p2, int iIn) {
+		return HighestCard.determineFor(p1, p2, iIn);
 	}
 	
-	private static List<String> highestCard(Player p1, Player p2) {
-		List<String> winner = new ArrayList<>();
-		int highCard = 0;
-		for(Card card: p1.getHand().getCards()) {
-			
-		}
-		return winner; 
+	public static void main(String[] args) {
+		Player white = new Player("white");
+		Player black = new Player("black");
+		Game.play(white, black);
+		System.out.println(GameRules.foo(white, black, 0));
 	}
 
 }
