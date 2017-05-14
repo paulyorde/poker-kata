@@ -23,10 +23,10 @@ public class ThreeOfAKind {
 			} else if (playerOneHasThreeOfAKind && playerTwoHasThreeOfAKind) {
 				
 			} else {
-				determineFor(p1, p2, i+1, j+1, k+1); // recursively look for pair
+				determineFor(p1, p2, i+1, j+1, k+1); // recursively look for three of kind
 			}
 		}
-		return TwoPair.determineFor(p1, p2, 0, 1);
+		return TwoPair.determineFor(p1, p2, 0, 1); // if three of kind not found - find two pair
 	}
 
 }

@@ -1,0 +1,36 @@
+package logic;
+
+import game.GameDisplay;
+import game.GameRules;
+import gamePieces.Card;
+import player.Player;
+
+public class Straight {
+
+	public Straight() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static String determineFor(Player p1, Player p2) {
+		int card = 0;
+	
+		boolean playerOneHasStraight = (p1.getHand().getCards().get(card).getValue()-1 == p1.getHand().getCards().get(card+1).getValue())
+				&& (p1.getHand().getCards().get(card+1).getValue()-1 == p1.getHand().getCards().get(card+2).getValue())
+				&& (p1.getHand().getCards().get(card+2).getValue()-1 == p1.getHand().getCards().get(card+3).getValue())
+				&& (p1.getHand().getCards().get(card+3).getValue()-1 == p1.getHand().getCards().get(card+4).getValue());
+		boolean playerTwoHasStraight = (p2.getHand().getCards().get(card).getValue()-1 == p2.getHand().getCards().get(card+1).getValue())
+				&& (p2.getHand().getCards().get(card+1).getValue()-1 == p2.getHand().getCards().get(card+2).getValue())
+				&& (p2.getHand().getCards().get(card+2).getValue()-1 == p2.getHand().getCards().get(card+3).getValue())
+				&& (p2.getHand().getCards().get(card+3).getValue()-1 == p2.getHand().getCards().get(card+4).getValue());
+
+		if (playerOneHasStraight) {
+			return GameDisplay.winnerWithStraight(p1);
+		} else if (playerTwoHasStraight) {
+			return GameDisplay.winnerWithStraight(p2);
+		} else if (playerOneHasStraight && playerTwoHasStraight) {
+			
+		} 
+		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2); // if three of kind not found - find two pair
+	}
+
+}

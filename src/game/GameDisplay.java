@@ -25,10 +25,20 @@ public class GameDisplay {
 		return String.format("%s wins. - with three of a kind: %s's", winner.getName(),
 				winner.getHand().getCards().get(card).getAlias());
 	}
+	
+	public static String winnerWithStraight(Player winner) {
+		return String.format("%s wins. - with straight", winner.getName());
+	}
+
+	public static String winnerWithFlush(Player winner) {
+		return String.format("%s wins. - with flush", winner.getName());
+	}
 
 	public static String tie() {
 		return "tie";
 	}
+
+	
 
 	
 

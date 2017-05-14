@@ -1,7 +1,9 @@
 package game;
 
+import logic.Flush;
 import logic.HighestCard;
 import logic.Pair;
+import logic.Straight;
 import logic.ThreeOfAKind;
 import logic.TwoPair;
 import player.Player;
@@ -22,6 +24,14 @@ public class GameRules  {
 	public static String findThreeOfAKind(Player p1, Player p2) {
 		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2);
 	}
+
+	public static String findStraight(Player p1, Player p2) {
+		return Straight.determineFor(p1, p2);
+	}
+	
+	public static String findFlush(Player p1, Player p2) {
+		return Flush.determineFor(p1,p2);
+	}
 	
 	
 	
@@ -40,5 +50,7 @@ public class GameRules  {
 		Game.play(white, black);
 		System.out.println(GameRules.findHighestCard(white, black));
 	}
+
+	
 
 }

@@ -12,7 +12,7 @@ public class GameApp {
 		Player white = new Player("white");
 		Player black = new Player("black");
 		Game.play(white, black);
-		System.out.println(GameRules.findThreeOfAKind(white, black));
+		System.out.println(GameRules.findFlush(white, black));
 	}
 
 }
