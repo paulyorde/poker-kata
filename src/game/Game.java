@@ -20,7 +20,7 @@ public class Game {
 		Player white = new Player("white");
 		Player black = new Player("black");
 		Game.play(white, black);
-		System.out.println(GameRules.foo(white, black, 0));
+		System.out.println(GameRules.findHighestCard(white, black));
 	}
 
 }

@@ -1,29 +1,31 @@
 package logic;
 
+import game.GameDisplay;
 import player.Player;
 
 public class HighestCard {
 
+	private static final int MAX_CARD_INDEX = 4;
+	//private static int beginningCardIndex;
 	public HighestCard() {}
 
-	public static int determineFor(Player p1, Player p2, int iIn) {
-		int noWinner = 0;
+	public static String determineFor(Player p1, Player p2, int beginningCardIndex) {
 		
-		for (int i = iIn; i < 4; i++) {
-			int playerOneHighestCard = p1.getHand().getCards().get(i).getValue();
-			int playerTwoHighestCard = p2.getHand().getCards().get(i).getValue();
+		for (int card = beginningCardIndex; card < MAX_CARD_INDEX; card++) {
+			int playerOneHighestCard = p1.getHand().getCards().get(card).getValue();
+			int playerTwoHighestCard = p2.getHand().getCards().get(card).getValue();
 			boolean playerOneCardIsHighest = playerOneHighestCard > playerTwoHighestCard;
 			boolean playerTwoCardIsHighest = playerOneHighestCard < playerTwoHighestCard;
-
+			
 			if (playerOneCardIsHighest) {
-				return playerOneHighestCard;
+				return GameDisplay.displayWinnerWithHighestCard(p1, card);
 			} else if (playerTwoCardIsHighest) {
-				return playerTwoHighestCard;
+				return GameDisplay.displayWinnerWithHighestCard(p2, card);
 			} else {
-				determineFor(p1, p2, iIn + 1); // recursively look for highest card
+				determineFor(p1, p2, beginningCardIndex+1); // recursively look for highest card
 			}
 		}
-		return noWinner;
+		return GameDisplay.tie();
 	}
 
 }
