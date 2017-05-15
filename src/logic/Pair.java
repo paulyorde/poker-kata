@@ -16,7 +16,10 @@ public class Pair {
 			boolean playerTwoIsPair = p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue();
 
 			if(flag.equals("pair")) {
-				if (playerOneIsPair) {
+				if (playerOneIsPair && playerTwoIsPair) {
+					// display winner with highest card
+				}
+				else if (playerOneIsPair) {
 					return GameDisplay.displayWinnerWithPair(p1, card);
 				} 
 				else if (playerTwoIsPair) {
