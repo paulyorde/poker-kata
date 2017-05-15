@@ -13,6 +13,11 @@ public class Card implements Comparable<Card> {
 		this.alias = alias;
 	}
 
+	public Card(String suit, Integer value) {
+		this.suit = suit;
+		this.value = value;
+	}
+
 	public String getSuit() {
 		return suit;
 	}

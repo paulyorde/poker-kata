@@ -38,8 +38,19 @@ public class GameDisplay {
 	public static String winnerWithFullHouse(Player winner) {
 		return String.format("%s wins. - with fullhouse", winner.getName());
 	}
+	
+	public static String winnerWithFourOfAKind(Player winner, int card) {
+		return String.format("%s wins. - with four of a kind: %s's", winner.getName(),
+				winner.getHand().getCards().get(card).getAlias());
+	}
+	
+	public static String winnerWithStraightFlush(Player winner) {
+		return String.format("%s wins. - with straight flush", winner.getName());
+	}
 
 	public static String tie() {
 		return "tie";
 	}
+
+	
 }

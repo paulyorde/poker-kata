@@ -25,10 +25,12 @@ public class TwoPair {
 
 			if (playerOneIsPair) {
 				playerOneHighCardOfPair.add(card);
+				playerOneHighCardOfPair.add(nextCard);
 				p1counter++;
 			}
 			if (playerTwoIsPair) {
 				playerTwoHighCardOfPair.add(card);
+				playerTwoHighCardOfPair.add(nextCard);
 				p2counter++;
 			}
 			if (p1counter == 2) {
