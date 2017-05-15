@@ -39,7 +39,7 @@ public class TwoPair {
 				determineFor(p1, p2, beginningCardIndex+1, nextCardBeginningIndex+1); // recursively look for two pair
 			}
 		}
-		return Pair.determineFor(p1, p2, 0, 1); // if two pair not found look for pair
+		return Pair.determineFor(p1, p2, 0, 1, "pair"); // if two pair not found look for pair
 	}
 
 }

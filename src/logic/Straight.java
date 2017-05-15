@@ -1,15 +1,11 @@
 package logic;
 
 import game.GameDisplay;
-import game.GameRules;
-import gamePieces.Card;
 import player.Player;
 
 public class Straight {
 
-	public Straight() {
-		// TODO Auto-generated constructor stub
-	}
+	public Straight() {}
 
 	public static String determineFor(Player p1, Player p2) {
 		int card = 0;
@@ -30,7 +26,7 @@ public class Straight {
 		} else if (playerOneHasStraight && playerTwoHasStraight) {
 			
 		} 
-		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2); // if three of kind not found - find two pair
+		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2, "three of a kind"); // if three of kind not found - find two pair
 	}
 
 }

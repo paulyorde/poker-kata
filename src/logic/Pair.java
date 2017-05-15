@@ -4,21 +4,36 @@ import game.GameDisplay;
 import player.Player;
 
 public class Pair {
-
+	
 	public Pair() {}
 
-	public static String determineFor(Player p1, Player p2, int beginningCardIndex, int nextCardBeginningIndex) {
+	public static String determineFor(Player p1, Player p2, int beginningCardIndex, int nextCardBeginningIndex, String handType) {
 		final int MAX_CARD_INDEX = 4;
-
+		// switch flag for pair or fullhose this = passed ing
+		String flag = handType;
 		for (int card = beginningCardIndex, nextCard = nextCardBeginningIndex = 1; card < MAX_CARD_INDEX; card++, nextCard++) {
 			boolean playerOneIsPair = p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards().get(nextCard).getValue();
 			boolean playerTwoIsPair = p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue();
 
-			if (playerOneIsPair) {
-				return GameDisplay.displayWinnerWithPair(p1, card);
-			} else if (playerTwoIsPair) {
-				return GameDisplay.displayWinnerWithPair(p2, card);
-			} else if (playerOneIsPair && playerTwoIsPair) {
+			if(flag.equals("pair")) {
+				if (playerOneIsPair) {
+					return GameDisplay.displayWinnerWithPair(p1, card);
+				} 
+				else if (playerTwoIsPair) {
+					return GameDisplay.displayWinnerWithPair(p2, card);
+				}
+			} 
+			else if(flag.equals("fullhouse")) {
+				if (playerOneIsPair) {
+					FullHouse.p1pair = 1;
+					return "";
+				}
+				else if (playerTwoIsPair) {
+					FullHouse.p2pair = 2;
+					return "";
+				}
+			} 
+			//else if (playerOneIsPair && playerTwoIsPair) {
 				// find which player has highest card if pairs are the same
 				// test case
 				// high cards below the pair
@@ -37,8 +52,9 @@ public class Pair {
 				 // then check if both are pairs with else 
 				
 				
-			} else {
-				determineFor(p1, p2, beginningCardIndex+1, nextCardBeginningIndex+1); // recursively look for pair
+			//} 
+		    else {
+				determineFor(p1, p2, beginningCardIndex+1, nextCardBeginningIndex+1, flag); // recursively look for pair
 			}
 		}
 		return HighestCard.determineFor(p1, p2, 0);
