@@ -11,22 +11,19 @@ public class FourOfAKind {
 		final int MAX_CARD_INDEX = 5;
 		
 		for (int card = i, nextCard = j, next = k, lastCard = l; lastCard < MAX_CARD_INDEX; card++, nextCard++, next++, lastCard++) {
-			boolean playerOneHasThreeOfAKind = (p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards().get(nextCard).getValue())
+			boolean playerOneHasFourOfAKind = (p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards().get(nextCard).getValue())
 					&& (p1.getHand().getCards().get(nextCard).getValue() == p1.getHand().getCards().get(next).getValue()
 					&& (p1.getHand().getCards().get(next).getValue() == p1.getHand().getCards().get(lastCard).getValue()));
-			boolean playerTwoHasThreeOfAKind = (p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue())
+			boolean playerTwoHasFourOfAKind = (p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue())
 					&& (p2.getHand().getCards().get(nextCard).getValue() == p2.getHand().getCards().get(next).getValue()
 					&& (p2.getHand().getCards().get(next).getValue() == p2.getHand().getCards().get(lastCard).getValue()));
 
-			if(playerOneHasThreeOfAKind) {
+			if(playerOneHasFourOfAKind) {
 				return GameDisplay.winnerWithFourOfAKind(p1, card);
 			} 
-			else if(playerTwoHasThreeOfAKind) {
+			else if(playerTwoHasFourOfAKind) {
 				return GameDisplay.winnerWithFourOfAKind(p2, card);
 			}
-//			else if (playerOneHasThreeOfAKind && playerTwoHasThreeOfAKind) {
-//				
-//			} 
 			else {
 				determineFor(p1, p2, i+1, j+1, k+1, l+1); // recursively look for three of kind
 			}

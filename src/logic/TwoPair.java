@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.GameDisplay;
+import game.GameRules;
 import player.Player;
 
 public class TwoPair {
@@ -18,17 +19,20 @@ public class TwoPair {
 		int p2counter = 0;
 
 		for (int card = beginningCardIndex, nextCard = nextCardBeginningIndex = 1; card < MAX_CARD_INDEX; card++, nextCard++) {
-			boolean playerOneIsPair = p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards()
+			boolean playerOneHasTwoPair = p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards()
 					.get(nextCard).getValue();
-			boolean playerTwoIsPair = p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards()
+			boolean playerTwoHasTwoPair = p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards()
 					.get(nextCard).getValue();
 
-			if (playerOneIsPair) {
+			if (playerOneHasTwoPair && playerTwoHasTwoPair) {
+				return GameRules.findHighestCard(p1, p2);
+			}
+			else if (playerOneHasTwoPair) {
 				playerOneHighCardOfPair.add(card);
 				playerOneHighCardOfPair.add(nextCard);
 				p1counter++;
 			}
-			if (playerTwoIsPair) {
+			else if (playerTwoHasTwoPair) {
 				playerTwoHighCardOfPair.add(card);
 				playerTwoHighCardOfPair.add(nextCard);
 				p2counter++;

@@ -1,11 +1,14 @@
 package player;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import gamePieces.Card;
 
 public class Player {
 	private String name;
+	private List<Card> cards = new ArrayList<>();
 	private Hand hand = new Hand();
 
 	public Player(String name) {

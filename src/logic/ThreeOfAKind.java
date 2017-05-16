@@ -29,15 +29,11 @@ public class ThreeOfAKind {
 					FullHouse.p13ofKind = 1;
 					return "";
 				}
-				else if(playerTwoHasThreeOfAKind) {
+				if(playerTwoHasThreeOfAKind) {
 					FullHouse.p23ofKind = 2;
 					return "";
 				}
 			}
-			 
-//			else if (playerOneHasThreeOfAKind && playerTwoHasThreeOfAKind) {
-//				
-//			} 
 			else {
 				determineFor(p1, p2, i+1, j+1, k+1, flag); // recursively look for three of kind
 			}

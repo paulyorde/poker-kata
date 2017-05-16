@@ -18,6 +18,10 @@ public class Card implements Comparable<Card> {
 		this.value = value;
 	}
 
+	public Card(Integer value) {
+		this.value = value;
+	}
+
 	public String getSuit() {
 		return suit;
 	}

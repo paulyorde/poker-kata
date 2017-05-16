@@ -8,9 +8,7 @@ import player.Player;
 public class Dealer {
 	private static final Deck DECK = new Deck();
 	
-	public Dealer() {
-		super();
-	}
+	public Dealer() {}
 
 	public static void dealTo(Player player) {
 		shuffleCards();
