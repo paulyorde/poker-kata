@@ -8,8 +8,7 @@ import gamePieces.Card;
 
 public class Player {
 	private String name;
-	private List<Card> cards = new ArrayList<>();
-	private Hand hand = new Hand();
+	private List<Card> hand = new ArrayList<>();
 
 	public Player(String name) {
 		this.name = name;
@@ -19,12 +18,12 @@ public class Player {
 		return name;
 	}
 
-	public Hand getHand() {
-		Collections.sort(hand.getCards());
+	public List<Card> getHand() {
+		Collections.sort(hand);
 		return hand;
 	}
 
 	public void addCardToHand(Card card) {
-		hand.addCard(card);
+		hand.add(card);
 	}
 }

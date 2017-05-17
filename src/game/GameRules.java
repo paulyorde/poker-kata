@@ -1,67 +1,53 @@
 package game;
 
-import logic.HighestCard; 
+import java.util.List;
+
+import gamePieces.Card;
+import logic.HighestCard;
+import logic.HandTypeMarker;
 import logic.Pair;
 import logic.TwoPair;
 import logic.ThreeOfAKind;
 import logic.Straight;
-import logic.StraightFlush;
 import logic.Flush;
 import logic.FullHouse;
 import logic.FourOfAKind;
-import player.Player;
+import logic.StraightFlush;
 
 public class GameRules  {
-	public static String findHighestCard(Player p1, Player p2) {
-		return HighestCard.determineFor(p1, p2, 0);
+	public static String findHighestCard(List<Card> playerOneHand, List<Card> playerTwoHand) {
+		return HighestCard.determineFor(playerOneHand, playerTwoHand, 0);
 	}
 
-	public static String findPair(Player p1, Player p2) {
-		return Pair.determineFor(p1, p2, 0, 1, "pair");
-	}
-
-	public static String findPairForFullHouse(Player p1, Player p2) {
-		return Pair.determineFor(p1, p2, 0, 1, "fullhouse");
+	public static String findPair(List<Card> playerOneHand, List<Card> playerTwoHand, HandTypeMarker handType) {
+		return Pair.determineFor(playerOneHand, playerTwoHand, 0, 1, handType);
 	}
 	
-	public static String findTwoPair(Player p1, Player p2) {
-		return TwoPair.determineFor(p1, p2, 0, 1);
-	}
-
-	public static String findThreeOfAKind(Player p1, Player p2) {
-		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2, "three of a kind");
+	public static String findTwoPair(List<Card> playerOneHand, List<Card> playerTwoHand) {
+		return TwoPair.determineFor(playerOneHand, playerTwoHand, 0, 1);
 	}
 	
-	public static String findThreeOfAKindForFullHouse(Player p1, Player p2) {
-		return ThreeOfAKind.determineFor(p1, p2, 0, 1, 2, "fullhouse");
+	public static String findThreeOfAKind(List<Card> playerOneHand, List<Card> playerTwoHand, HandTypeMarker handType) {
+		return ThreeOfAKind.determineFor(playerOneHand, playerTwoHand, 0, 1, 2, handType);
 	}
 
-	public static String findStraight(Player p1, Player p2) {
-		return Straight.determineFor(p1, p2);
-	}
-
-	public static String findStraightForStraightFlush(Player p1, Player p2) {
-		return Straight.determineFor(p1, p2);
+	public static String findStraight(List<Card> playerOneHand, List<Card> playerTwoHand, HandTypeMarker handType) {
+		return Straight.determineFor(playerOneHand, playerTwoHand, handType);
 	}
 	
-	public static String findFlush(Player p1, Player p2) {
-		return Flush.determineFor(p1,p2);
-	}
-
-	public static String findFlushForStraightFlush(Player p1, Player p2) {
-		return Flush.determineFor(p1,p2);
+	public static String findFlush(List<Card> playerOneHand, List<Card> playerTwoHand, HandTypeMarker handType) {
+		return Flush.determineFor(playerOneHand, playerTwoHand, handType);
 	}
 	
-	public static String findFullHouse(Player p1, Player p2) {
-		return FullHouse.determineFor(p1,p2);
+	public static String findFullHouse(List<Card> playerOneHand, List<Card> playerTwoHand) {
+		return FullHouse.determineFor(playerOneHand, playerTwoHand);
 	}
 	
-	public static String findFourOfAKind(Player p1, Player p2) {
-		// TODO Auto-generated method stub
-		return FourOfAKind.determineFor(p1, p2, 0, 1, 2, 3);
+	public static String findFourOfAKind(List<Card> playerOneHand, List<Card> playerTwoHand) {
+		return FourOfAKind.determineFor(playerOneHand, playerTwoHand, 0, 1, 2, 3);
 	}
 
-	public static String findStraightFlush(Player p1, Player p2) {
-		return StraightFlush.determineFor(p1, p2);
+	public static String findStraightFlush(List<Card> playerOneHand, List<Card> playerTwoHand) {
+		return StraightFlush.determineFor(playerOneHand, playerTwoHand);
 	}
 }

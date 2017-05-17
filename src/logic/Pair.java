@@ -1,47 +1,51 @@
 package logic;
 
+import java.util.List;
+
+import game.Game;
 import game.GameDisplay;
 import game.GameRules;
-import player.Player;
+import gamePieces.Card;
 
 public class Pair {
 	
 	public Pair() {}
 
-	public static String determineFor(Player p1, Player p2, int beginningCardIndex, int nextCardBeginningIndex, String handType) {
+	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand, int beginningCardIndex, int nextCardBeginningIndex, HandTypeMarker handType) {
+		boolean playerOneIsPair = false;
+		boolean playerTwoIsPair = false;
 		final int MAX_CARD_INDEX = 4;
-		String flag = handType;
 		
 		for (int card = beginningCardIndex, nextCard = nextCardBeginningIndex = 1; card < MAX_CARD_INDEX; card++, nextCard++) {
-			boolean playerOneIsPair = p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards().get(nextCard).getValue();
-			boolean playerTwoIsPair = p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue();
+			playerOneIsPair = playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue();
+			playerTwoIsPair = playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue();
 
-			if(flag.equals("pair")) {
+			if(handType.equals(HandTypeMarker.PAIR)) {
 				 if(playerOneIsPair && playerTwoIsPair) {
-					 return GameRules.findHighestCard(p1, p2);
+					 return GameRules.findHighestCard(playerOneHand, playerTwoHand);
 				 }
 				 if (playerOneIsPair) {
-					return GameDisplay.displayWinnerWithPair(p1, card);
+					return GameDisplay.winnerWithPair(Game.getPlayerOne(), card);
 				} 
 				else if (playerTwoIsPair) {
-					return GameDisplay.displayWinnerWithPair(p2, card);
+					return GameDisplay.winnerWithPair(Game.getPlayerTwo(), card);
 				}
 			} 
-			 if(flag.equals("fullhouse")) {
+			else if(handType.equals(HandTypeMarker.FULL_HOUSE)) {
 				if (playerOneIsPair) {
-					FullHouse.p1pair = 1;
+					FullHouse.setPlayerOneHasPair(true);
 					return "";
 				}
 				else if (playerTwoIsPair) {
-					FullHouse.p2pair = 2;
+					FullHouse.setPlayerTwoHasPair(true);
 					return "";
 				}
 			} 
 		    else {
-				determineFor(p1, p2, beginningCardIndex+1, nextCardBeginningIndex+1, flag); // recursively look for pair
+				determineFor(playerOneHand, playerTwoHand, beginningCardIndex+1, nextCardBeginningIndex+1, handType); // recursively look for pair
 			}
 		}
-		return HighestCard.determineFor(p1, p2, 0); // if pair not found, look for highest card
+		return GameRules.findHighestCard(playerOneHand, playerTwoHand); // if pair not found, look for highest card
 	}
 
 }

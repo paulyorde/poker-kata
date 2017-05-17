@@ -1,44 +1,49 @@
 package logic;
 
+import java.util.List; 
+
+import game.Game;
 import game.GameDisplay;
-import player.Player;
+import game.GameRules;
+import gamePieces.Card;
 
 public class ThreeOfAKind {
 	public ThreeOfAKind() {}
 
-	public static String determineFor(Player p1, Player p2, int i, int j, int k, String handType) {
-		final int MAX_CARD_INDEX = 5;
-		String flag = handType;
+	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand,
+			int beginningCardIndex, int nextCardIndex, int endingCardIndex, HandTypeMarker handType) {
 		
-		for (int card = i, nextCard = j, next = k; next < MAX_CARD_INDEX; card++, nextCard++, next++) {
-			boolean playerOneHasThreeOfAKind = (p1.getHand().getCards().get(card).getValue() == p1.getHand().getCards().get(nextCard).getValue())
-					&& (p1.getHand().getCards().get(nextCard).getValue() == p1.getHand().getCards().get(next).getValue());
-			boolean playerTwoHasThreeOfAKind = (p2.getHand().getCards().get(card).getValue() == p2.getHand().getCards().get(nextCard).getValue())
-					&& (p2.getHand().getCards().get(nextCard).getValue() == p2.getHand().getCards().get(next).getValue());;
+		final int MAX_CARD_INDEX = 5;
+		
+		for (int card = beginningCardIndex, nextCard = nextCardIndex, endCard = endingCardIndex; endCard < MAX_CARD_INDEX; card++, nextCard++, endCard++) {
+			boolean playerOneHasThreeOfAKind = (playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
+					&& (playerOneHand.get(nextCard).getValue() == playerOneHand.get(endCard).getValue());
+			boolean playerTwoHasThreeOfAKind = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
+					&& (playerTwoHand.get(nextCard).getValue() == playerTwoHand.get(endCard).getValue());;
 
-			if(flag.equals("three of a kind")) {
+			if(handType.equals(HandTypeMarker.THREE_OF_A_KIND)) {
 				if(playerOneHasThreeOfAKind) {
-					return GameDisplay.winnerWithThreeOfAKind(p1, card);
+					return GameDisplay.winnerWithThreeOfAKind(Game.getPlayerOne(), card);
 				} 
 				else if(playerTwoHasThreeOfAKind) {
-					return GameDisplay.winnerWithThreeOfAKind(p2, card);
+					return GameDisplay.winnerWithThreeOfAKind(Game.getPlayerTwo(), card);
 				}
 			} 
-			else if(flag.equals("fullhouse")) {
+			else if(handType.equals(HandTypeMarker.FULL_HOUSE)) {
 				if(playerOneHasThreeOfAKind) {
-					FullHouse.p13ofKind = 1;
+					FullHouse.setPlayerOneHasThreeOfAKind(true);;
 					return "";
 				}
 				if(playerTwoHasThreeOfAKind) {
-					FullHouse.p23ofKind = 2;
+					FullHouse.setPlayerTwoHasThreeOfAKind(true);;
 					return "";
 				}
 			}
 			else {
-				determineFor(p1, p2, i+1, j+1, k+1, flag); // recursively look for three of kind
+				determineFor(playerOneHand, playerTwoHand, beginningCardIndex+1, nextCardIndex+1, endingCardIndex+1, handType); // recursively look for three of kind
 			}
 		}
-		return TwoPair.determineFor(p1, p2, 0, 1); // if three of kind not found - find two pair
+		return GameRules.findPair(playerOneHand, playerTwoHand, HandTypeMarker.PAIR); // if three of kind not found - find two pair
 	}
 
 }

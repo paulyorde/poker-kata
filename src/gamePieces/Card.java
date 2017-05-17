@@ -40,7 +40,7 @@ public class Card implements Comparable<Card> {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s %d %s", suit, face, value, alias);
+		return String.format("%s%s", face, suit);
 	}
 
 	@Override

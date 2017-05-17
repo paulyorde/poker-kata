@@ -1,21 +1,39 @@
 package game;
 
+
+import java.util.List;
+
 import player.Player;
+import gamePieces.Card;
 
 public class Game {
+	private static Player playerOne;
+	private static Player playerTwo;
 	
 	public Game() {}
 
-	public static String play(Player playerOne, Player playerTwo) {
-		Dealer.dealTo(playerOne);
-		Dealer.dealTo(playerTwo);
+	public static String play(Player playerOneIn, Player playerTwoIn) {
+		playerOne = playerOneIn;
+		playerTwo = playerTwoIn;
 		
-		// get cards from each player called playerOneCards, playerTwoCards , pass into findWinner
+		Dealer.dealToPlayerOne(playerOne);
+		Dealer.dealToPlayerTwo(playerTwo);
 		
 		return findWinner(playerOne, playerTwo);
 	}
 	
 	private static String findWinner(Player playerOne, Player playerTwo) {
-		return GameRules.findFlushForStraightFlush(playerOne, playerTwo);
+		List<Card> playerOneHand = playerOne.getHand();
+		List<Card> playerTwoHand = playerTwo.getHand();
+		return GameRules.findStraightFlush(playerOneHand, playerTwoHand);
 	}
+
+	public static Player getPlayerOne() {
+		return playerOne;
+	}
+
+	public static Player getPlayerTwo() {
+		return playerTwo;
+	}
+	
 }
