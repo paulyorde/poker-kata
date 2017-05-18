@@ -13,13 +13,13 @@ public class FourOfAKind {
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand, int i, int j, int k, int l) {
 		final int MAX_CARD_INDEX = 5;
 		
-		for (int card = i, nextCard = j, next = k, lastCard = l; lastCard < MAX_CARD_INDEX; card++, nextCard++, next++, lastCard++) {
+		for (int card = i, nextCard = j, next = k, endingCard = l; endingCard < MAX_CARD_INDEX; card++, nextCard++, next++, endingCard++) {
 			boolean playerOneHasFourOfAKind = (playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
 					&& (playerOneHand.get(nextCard).getValue() == playerOneHand.get(next).getValue()
-					&& (playerOneHand.get(next).getValue() == playerOneHand.get(lastCard).getValue()));
+					&& (playerOneHand.get(next).getValue() == playerOneHand.get(endingCard).getValue()));
 			boolean playerTwoHasFourOfAKind = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
 					&& (playerTwoHand.get(nextCard).getValue() == playerTwoHand.get(next).getValue()
-					&& (playerTwoHand.get(next).getValue() == playerTwoHand.get(lastCard).getValue()));
+					&& (playerTwoHand.get(next).getValue() == playerTwoHand.get(endingCard).getValue()));
 
 			if(playerOneHasFourOfAKind) {
 				return GameDisplay.winnerWithFourOfAKind(Game.getPlayerOne(), card);

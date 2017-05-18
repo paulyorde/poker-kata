@@ -1,6 +1,8 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import gamePieces.Card;
 import gamePieces.Deck;
@@ -12,32 +14,33 @@ public class Dealer {
 	
 	public Dealer() {}
 
-	public static void dealToPlayerOne(Player playerOne) {
+	public static void dealToPlayers(Player playerOne, Player playerTwo) {
+		List<Card> gameCards = new ArrayList<>();
+		
 		shuffleCards();
 		DECK.cards().stream()
+			.limit(10)
+			.distinct()
+		    .forEach(card -> gameCards.add(card));
+		
+		dealToPlayerOne(playerOne, gameCards);
+		
+		dealToPlayerTwo(playerTwo, gameCards);
+	}
+
+	private static void dealToPlayerTwo(Player playerTwo, List<Card> gameCards) {
+		gameCards.stream()
+		    .skip(5)
 			.limit(MAX_HAND_SIZE)
 			.distinct()
-		    .forEach(card -> playerOne.addCardToHand(card));
+			.forEach(card -> playerTwo.addCardToHand(card));
 	}
-	
-	public static void dealToPlayerTwo(Player playerTwo) {
-		shuffleCards();
-		DECK.cards().stream()
+
+	private static void dealToPlayerOne(Player playerOne, List<Card> gameCards) {
+		gameCards.stream()
 			.limit(MAX_HAND_SIZE)
 			.distinct()
-		    .forEach(card -> toPlayerTwo(playerTwo, card));
-	}
-	
-	private static void toPlayerTwo(Player playerTwo, Card card) {
-		if(!Game.getPlayerOne().getHand().contains(card)) {
-			playerTwo.addCardToHand(card);
-		}
-		if(Game.getPlayerTwo().getHand().size() < 1) {
-			DECK.cards().stream()
-				.limit(MAX_HAND_SIZE - Game.getPlayerTwo().getHand().size())
-				.forEach(card2 -> playerTwo.addCardToHand(card2));
-		}
-			
+			.forEach(card -> playerOne.addCardToHand(card));
 	}
 	
 	private static void shuffleCards() {
