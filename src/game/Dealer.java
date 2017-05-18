@@ -27,6 +27,13 @@ public class Dealer {
 		
 		dealToPlayerTwo(playerTwo, gameCards);
 	}
+	
+	private static void dealToPlayerOne(Player playerOne, List<Card> gameCards) {
+		gameCards.stream()
+			.limit(MAX_HAND_SIZE)
+			.distinct()
+			.forEach(card -> playerOne.addCardToHand(card));
+	}
 
 	private static void dealToPlayerTwo(Player playerTwo, List<Card> gameCards) {
 		gameCards.stream()
@@ -34,13 +41,6 @@ public class Dealer {
 			.limit(MAX_HAND_SIZE)
 			.distinct()
 			.forEach(card -> playerTwo.addCardToHand(card));
-	}
-
-	private static void dealToPlayerOne(Player playerOne, List<Card> gameCards) {
-		gameCards.stream()
-			.limit(MAX_HAND_SIZE)
-			.distinct()
-			.forEach(card -> playerOne.addCardToHand(card));
 	}
 	
 	private static void shuffleCards() {
