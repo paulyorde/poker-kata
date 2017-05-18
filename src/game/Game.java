@@ -16,8 +16,6 @@ public class Game {
 		playerOne = playerOneIn;
 		playerTwo = playerTwoIn;
 		
-//		Dealer.dealToPlayerOne(playerOne);
-//		Dealer.dealToPlayerTwo(playerTwo);
 		Dealer.dealToPlayers(playerOne, playerTwo);
 		
 		return findWinner(playerOne, playerTwo);
