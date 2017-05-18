@@ -10,33 +10,32 @@ import player.Player;
 
 public class Dealer {
 	private static final Deck DECK = new Deck();
+	private static final List<Card> GAME_CARDS = new ArrayList<>();
 	private static final int MAX_HAND_SIZE = 5;
 	
 	public Dealer() {}
 
 	public static void dealToPlayers(Player playerOne, Player playerTwo) {
-		List<Card> gameCards = new ArrayList<>();
-		
 		shuffleCards();
 		DECK.cards().stream()
 			.limit(10)
 			.distinct()
-		    .forEach(card -> gameCards.add(card));
+		    .forEach(card -> GAME_CARDS.add(card));
 		
-		dealToPlayerOne(playerOne, gameCards);
+		dealToPlayerOne(playerOne);
 		
-		dealToPlayerTwo(playerTwo, gameCards);
+		dealToPlayerTwo(playerTwo);
 	}
 	
-	private static void dealToPlayerOne(Player playerOne, List<Card> gameCards) {
-		gameCards.stream()
+	private static void dealToPlayerOne(Player playerOne) {
+		GAME_CARDS.stream()
 			.limit(MAX_HAND_SIZE)
 			.distinct()
 			.forEach(card -> playerOne.addCardToHand(card));
 	}
 
-	private static void dealToPlayerTwo(Player playerTwo, List<Card> gameCards) {
-		gameCards.stream()
+	private static void dealToPlayerTwo(Player playerTwo) {
+		GAME_CARDS.stream()
 		    .skip(5)
 			.limit(MAX_HAND_SIZE)
 			.distinct()
