@@ -1,1 +1,6 @@
 /bin/
+.settings
+.gradle/3.3/taskArtifacts
+.classpath
+.project
+.gradle/
