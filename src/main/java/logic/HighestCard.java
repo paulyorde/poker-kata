@@ -11,9 +11,9 @@ public class HighestCard {
 	
 	public HighestCard() {}
 
-	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand, int beginningCardIndex) {
+	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand) {
 		final int MAX_CARD_INDEX = 4;
-		for (int card = beginningCardIndex; card < MAX_CARD_INDEX; card++) {
+		for (int card = 0; card < MAX_CARD_INDEX; card++) {
 			int playerOneHighestCard = playerOneHand.get(card).getValue();
 			int playerTwoHighestCard = playerTwoHand.get(card).getValue();
 			boolean playerOneCardIsHighest = playerOneHighestCard > playerTwoHighestCard;
@@ -28,9 +28,6 @@ public class HighestCard {
 			else if (playerTwoCardIsHighest) {
 				return GameDisplay.winnerWithHighestCard(Game.getPlayerTwo(), card);
 			} 
-			else {
-				determineFor(playerOneHand, playerTwoHand, beginningCardIndex+1); // recursively look for highest card
-			}
 		}
 		return GameDisplay.tie();
 	}

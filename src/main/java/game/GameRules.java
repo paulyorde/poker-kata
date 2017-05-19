@@ -16,7 +16,7 @@ import logic.StraightFlush;
 
 public class GameRules  {
 	public static String findHighestCard(List<Card> playerOneHand, List<Card> playerTwoHand) {
-		return HighestCard.determineFor(playerOneHand, playerTwoHand, 0);
+		return HighestCard.determineFor(playerOneHand, playerTwoHand);
 	}
 
 	public static String findPair(List<Card> playerOneHand, List<Card> playerTwoHand) {
