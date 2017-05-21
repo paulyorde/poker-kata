@@ -2,7 +2,7 @@
 
 ### Setup
 
-1. clone repo
+1. clone repo. cd into repo
 2. run `gradle eclipse` from command line
 3. import into Eclipse 
 4. open logic test from test/src/main. run as j-unit test
