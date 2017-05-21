@@ -17,6 +17,7 @@ public class FourOfAKind {
 		boolean playerTwoHasFourOfAKind = false;
 		
 		for (int card = 0, nextCard = 1, next = 2, endingCard = 3; next < MAX_CARD_INDEX; card++, nextCard++, next++, endingCard++) {
+			// only set if not found so as to not overwrite boolean when found
 			if(!playerOneHasFourOfAKind) {
 				playerOneHasFourOfAKind = ((playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
 					    && (playerOneHand.get(nextCard).getValue() == playerOneHand.get(next).getValue())
@@ -27,7 +28,7 @@ public class FourOfAKind {
 						&& (playerTwoHand.get(nextCard).getValue() == playerTwoHand.get(next).getValue()
 						&& (playerTwoHand.get(next).getValue() == playerTwoHand.get(endingCard).getValue()));
 			}
-			
+			// if both hands have four of a kind, determine which hand has the highest value four of a kind
 			if(playerOneHasFourOfAKind && playerTwoHasFourOfAKind) {
 				if(playerOneHand.get(next).getValue() > playerTwoHand.get(next).getValue()) {
 					return GameDisplay.winnerWithFourOfAKind(Game.getPlayerOne());

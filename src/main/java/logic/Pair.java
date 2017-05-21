@@ -12,8 +12,7 @@ public class Pair {
 	public Pair() {}
 
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand) {
-		boolean playerOneIsPair = false;
-		boolean playerTwoIsPair = false;
+		boolean playerOneIsPair = false, playerTwoIsPair = false;
 		final int MAX_CARD_INDEX = 4;
 	
 		for (int card = 0, nextCard = 1; card < MAX_CARD_INDEX; card++, nextCard++) {

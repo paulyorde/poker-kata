@@ -11,13 +11,13 @@ public class ThreeOfAKind {
 	public ThreeOfAKind() {}
 
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand) {
-		
+		boolean playerOneHasThreeOfAKind = false, playerTwoHasThreeOfAKind = false; 
 		final int MAX_CARD_INDEX = 5;
 		
 		for (int card = 0, nextCard = 1, endCard = 2; endCard < MAX_CARD_INDEX; card++, nextCard++, endCard++) {
-			boolean playerOneHasThreeOfAKind = (playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
+			playerOneHasThreeOfAKind = (playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
 					&& (playerOneHand.get(nextCard).getValue() == playerOneHand.get(endCard).getValue());
-			boolean playerTwoHasThreeOfAKind = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
+			playerTwoHasThreeOfAKind = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
 					&& (playerTwoHand.get(nextCard).getValue() == playerTwoHand.get(endCard).getValue());;
 
 			if(playerOneHasThreeOfAKind) {

@@ -1,6 +1,6 @@
 package logic;
 
-import java.util.ArrayList;  
+import java.util.ArrayList; 
 import java.util.List;
 
 import game.Game;
@@ -14,26 +14,27 @@ public class TwoPair {
 
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand) {
 		final int MAX_CARD_INDEX = 4;
+		boolean playerOneHasTwoPair = false, playerTwoHasTwoPair = false;
 		List<Integer> playerOneCardsForDisplay = new ArrayList<>();
 		List<Integer> playerTwoCardsForDisplay = new ArrayList<>();
 
-		for (int card = 0, nextCard = 1, i = 2, j = 3; i < MAX_CARD_INDEX; card++, nextCard++, i++, j++) {
-			boolean playerOneHasTwoPair = ((playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
-					&& (playerOneHand.get(i).getValue() == playerOneHand.get(j).getValue()));
-			boolean playerTwoHasTwoPair = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
-					&& (playerTwoHand.get(i).getValue() == playerTwoHand.get(j).getValue());
+		for (int card = 0, nextCard = 1, next = 2, endCard = 3; next < MAX_CARD_INDEX; card++, nextCard++, next++, endCard++) {
+			playerOneHasTwoPair = ((playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
+					&& (playerOneHand.get(next).getValue() == playerOneHand.get(endCard).getValue()));
+			playerTwoHasTwoPair = (playerTwoHand.get(card).getValue() == playerTwoHand.get(nextCard).getValue())
+					&& (playerTwoHand.get(next).getValue() == playerTwoHand.get(endCard).getValue());
 
 			if (playerOneHasTwoPair && playerTwoHasTwoPair) {
 				return GameRules.findHighestCard(playerOneHand, playerTwoHand);
 			}
 			else if (playerOneHasTwoPair) {
 				playerOneCardsForDisplay.add(card);
-				playerOneCardsForDisplay.add(i);
+				playerOneCardsForDisplay.add(next);
 				return GameDisplay.winnerWithTwoPair(Game.getPlayerOne(), playerOneCardsForDisplay);
 			} 
 			else if (playerTwoHasTwoPair) {
 				playerTwoCardsForDisplay.add(card);
-				playerTwoCardsForDisplay.add(i);
+				playerTwoCardsForDisplay.add(next);
 				return GameDisplay.winnerWithTwoPair(Game.getPlayerTwo(), playerTwoCardsForDisplay);
 			} 
 		}

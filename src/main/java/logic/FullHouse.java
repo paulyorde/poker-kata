@@ -13,14 +13,13 @@ public class FullHouse {
 	public FullHouse() {}
 
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand) {
-		boolean playerOneHasThreeOfAKind = false;
-		boolean playerTwoHasThreeOfAKind = false;
-		boolean playerOneIsPair = false;
-		boolean playerTwoIsPair = false;
-		final int MAX_CARD_INDEX = 4;
+		boolean playerOneHasThreeOfAKind = false, playerTwoHasThreeOfAKind = false;
+		boolean playerOneHasPair = false, playerTwoHasPair = false;
+		int FIRST_CARD = 0, SECOND_CARD = 1, TWO_CARDS = 2, MAX_CARD_INDEX = 4;
 		List<Card> threeOfAKind = new ArrayList<>();
-		List<Card> pair = new ArrayList<>();
+		List<Card> remainingCards = new ArrayList<>();
 		
+		// find three of a kind and it to list
 		for (int card = 0, nextCard = 1, endCard = 2; nextCard < MAX_CARD_INDEX; card++, nextCard++, endCard++) {
 			playerOneHasThreeOfAKind = (playerOneHand.get(card).getValue() == playerOneHand.get(nextCard).getValue())
 					&& (playerOneHand.get(nextCard).getValue() == playerOneHand.get(endCard).getValue());
@@ -36,27 +35,27 @@ public class FullHouse {
 			
 		}
 		
+		// determine that pairs aren't already in three of a kind
 		for(Card cardInThreOfAKind : threeOfAKind) {
-		    for (int card = 0; card < 5; card++) {
+		    for (int card = 0; card < MAX_CARD_INDEX; card++) {
 				if (playerOneHand.get(card).getValue() != cardInThreOfAKind.getValue())  {
-					if(pair.size() < 2)
-						pair.add(playerOneHand.get(card));
-					if(pair.size() > 1)
-						playerOneIsPair = (pair.get(0).getValue() == pair.get(1).getValue());
-					if(playerOneIsPair) {
+					remainingCards.add(playerOneHand.get(card));
+					if(remainingCards.size() == TWO_CARDS)
+						playerOneHasPair = (remainingCards.get(FIRST_CARD).getValue() == remainingCards.get(SECOND_CARD).getValue());
+					if(playerOneHasPair) {
 						break;
 					}
 				}
 			}
 		}
 		
-		if (playerOneHasThreeOfAKind && playerOneIsPair) {
+		if (playerOneHasThreeOfAKind && playerOneHasPair) {
 			return GameDisplay.winnerWithFullHouse(Game.getPlayerOne());
 		} 
-		else if (playerTwoHasThreeOfAKind && playerTwoIsPair) {
+		else if (playerTwoHasThreeOfAKind && playerTwoHasPair) {
 			return GameDisplay.winnerWithFullHouse(Game.getPlayerTwo());
 		}
 		
-		return GameRules.findFlush(playerOneHand, playerTwoHand, HandTypeMarker.FLUSH); // if pair not found, look for highest card
+		return GameRules.findFlush(playerOneHand, playerTwoHand, HandTypeMarker.FLUSH); // if full house not found, look for flush
 	}
 }

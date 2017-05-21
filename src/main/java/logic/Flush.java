@@ -12,16 +12,16 @@ public class Flush {
 	public Flush() {}
 
 	public static String determineFor(List<Card> playerOneHand, List<Card> playerTwoHand, HandTypeMarker handType) {
-		int card = 0;
+		int firstCard = 0, secondCard = 1, thirdCard =  2, fourthCard = 3, fifthCard =  4;
 		
-		boolean playerOneHasFlush = (playerOneHand.get(card).getSuit() == playerOneHand.get(card+1).getSuit())
-				&& (playerOneHand.get(card+1).getSuit() == playerOneHand.get(card+2).getSuit())
-				&& (playerOneHand.get(card+2).getSuit() == playerOneHand.get(card+3).getSuit())
-				&& (playerOneHand.get(card+3).getSuit() == playerOneHand.get(card+4).getSuit());
-		boolean playerTwoHasFlush = (playerTwoHand.get(card).getSuit() == playerTwoHand.get(card+1).getSuit())
-				&& (playerTwoHand.get(card+1).getSuit() == playerTwoHand.get(card+2).getSuit())
-				&& (playerTwoHand.get(card+2).getSuit() == playerTwoHand.get(card+3).getSuit())
-				&& (playerTwoHand.get(card+3).getSuit() == playerTwoHand.get(card+4).getSuit());
+		boolean playerOneHasFlush = ((playerOneHand.get(firstCard).getSuit() == playerOneHand.get(secondCard).getSuit())
+				&& (playerOneHand.get(secondCard).getSuit() == playerOneHand.get(thirdCard).getSuit())
+				&& (playerOneHand.get(thirdCard).getSuit() == playerOneHand.get(fourthCard).getSuit())
+				&& (playerOneHand.get(fourthCard).getSuit() == playerOneHand.get(fifthCard).getSuit()));
+		boolean playerTwoHasFlush = ((playerTwoHand.get(firstCard).getSuit() == playerTwoHand.get(secondCard).getSuit())
+				&& (playerTwoHand.get(secondCard).getSuit() == playerTwoHand.get(thirdCard).getSuit())
+				&& (playerTwoHand.get(thirdCard).getSuit() == playerTwoHand.get(fourthCard).getSuit())
+				&& (playerTwoHand.get(fourthCard).getSuit() == playerTwoHand.get(fifthCard).getSuit()));
 
 		if(handType.equals(HandTypeMarker.FLUSH)) { 
 			if (playerOneHasFlush && playerTwoHasFlush) {

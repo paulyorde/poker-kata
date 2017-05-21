@@ -90,7 +90,26 @@ public class LogicTest {
 		                                                                                                                        
 		Assert.assertEquals("white wins. - with fullhouse", GameRules.findFullHouse(playerOne.getHand(), playerTwo.getHand())); 
 		                                                                                                                        
-	}       
+	}     
+	
+	@Test                                                                                                                       
+	public void shouldReturnFullHouseWithHighestValueWhenBothHandsHaveFullHouse() {  
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10)));    
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10)));      
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));      
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));      
+		playerOne.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(8), CardData.alias().get(8)));      
+		
+		playerTwo.addCardToHand(new Card(CardData.suit().get(0), null, CardData.value().get(11), CardData.alias().get(11)));    
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(11), CardData.alias().get(11)));    
+		playerTwo.addCardToHand(new Card(CardData.suit().get(3), null, CardData.value().get(11), CardData.alias().get(11)));    
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(7), CardData.alias().get(7)));      
+		playerTwo.addCardToHand(new Card(CardData.suit().get(3), null, CardData.value().get(7), CardData.alias().get(7))); 
+		
+		
+		Assert.assertEquals("white wins. - with fullhouse", GameRules.findFullHouse(playerOne.getHand(), playerTwo.getHand())); 
+		
+	}      
 	
 	@Test
 	public void shouldReturnFlush() {
@@ -238,6 +257,24 @@ public class LogicTest {
 	}
 	
 	@Test
+	public void shouldReturnHighestValuePair() {
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(11), CardData.alias().get(11)));  
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(9), CardData.alias().get(9)));    
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));    
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));    
+		playerOne.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(6), CardData.alias().get(6)));    
+		                                                                                                                      
+		playerTwo.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10)));  
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(7), CardData.alias().get(7)));  
+		playerTwo.addCardToHand(new Card(CardData.suit().get(3), null, CardData.value().get(7), CardData.alias().get(7)));  
+		playerTwo.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(12), CardData.alias().get(12)));  
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(11),CardData.alias().get(11)));   
+		
+		Assert.assertEquals("white wins. - with a pair: Ten's", GameRules.findPair(playerOne.getHand(), playerTwo.getHand()));
+		
+	}
+	
+	@Test
 	public void shouldReturnHighestCardIfBothHavePair() {
 		playerOne.addCardToHand(new Card(CardData.suit().get(0), null, CardData.value().get(7), CardData.alias().get(7))); 
 		playerOne.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(9), CardData.alias().get(9)));   
@@ -270,6 +307,24 @@ public class LogicTest {
 		playerTwo.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(11),CardData.alias().get(11))); 
 		
 		Assert.assertEquals("tie", GameRules.findPair(playerOne.getHand(), playerTwo.getHand()));
+		
+	}
+	
+	@Test
+	public void shouldReturnHighestCardWhenOtherHighestCardsMatch() {
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(11), CardData.alias().get(11))); 
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(12), CardData.alias().get(12)));   
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));   
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(7), CardData.alias().get(7)));   
+		playerOne.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(6), CardData.alias().get(6)));   
+		                                                                                                                     
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(7), CardData.alias().get(7)));   
+		playerTwo.addCardToHand(new Card(CardData.suit().get(3), null, CardData.value().get(4), CardData.alias().get(4)));   
+		playerTwo.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10))); 
+		playerTwo.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(12), CardData.alias().get(12))); 
+		playerTwo.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(11),CardData.alias().get(11)));  
+		
+		Assert.assertEquals("black wins. - with high card: Queen", GameRules.findHighestCard(playerOne.getHand(), playerTwo.getHand()));
 		
 	}
 	
