@@ -94,8 +94,8 @@ public class LogicTest {
 	
 	@Test                                                                                                                       
 	public void shouldReturnFullHouseWithHighestValueWhenBothHandsHaveFullHouse() {  
-		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10)));    
-		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(10), CardData.alias().get(10)));      
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(12), CardData.alias().get(12)));    
+		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(12), CardData.alias().get(12)));      
 		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));      
 		playerOne.addCardToHand(new Card(CardData.suit().get(1), null, CardData.value().get(8), CardData.alias().get(8)));      
 		playerOne.addCardToHand(new Card(CardData.suit().get(2), null, CardData.value().get(8), CardData.alias().get(8)));      
@@ -107,7 +107,7 @@ public class LogicTest {
 		playerTwo.addCardToHand(new Card(CardData.suit().get(3), null, CardData.value().get(7), CardData.alias().get(7))); 
 		
 		
-		Assert.assertEquals("white wins. - with fullhouse", GameRules.findFullHouse(playerOne.getHand(), playerTwo.getHand())); 
+		Assert.assertEquals("black wins. - with fullhouse", GameRules.findFullHouse(playerOne.getHand(), playerTwo.getHand())); 
 		
 	}      
 	
