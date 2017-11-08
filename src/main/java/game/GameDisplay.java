@@ -10,7 +10,7 @@ public class GameDisplay {
 
 	public GameDisplay() {
 	}
-
+	// todo - meta program winner hands
 	public static String winnerWithHighestCard(Player winner, int highCard) {
 		return String.format("%s wins. - with high card: %s", winner.getName(),
 				winner.getHand().get(highCard).getAlias());
